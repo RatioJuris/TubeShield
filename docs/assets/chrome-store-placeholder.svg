@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Chrome Web Store placeholder">
+  <rect x="1" y="1" width="46" height="46" rx="10" fill="#151e2b" stroke="#354154"/>
+  <circle cx="24" cy="24" r="13" fill="none" stroke="#9aa8ba" stroke-width="2"/>
+  <path d="M24 11a13 13 0 0 1 11.3 6.5H24" fill="none" stroke="#ef3340" stroke-width="3" stroke-linecap="round"/>
+  <path d="M35.3 17.5A13 13 0 0 1 24 37" fill="none" stroke="#9aa8ba" stroke-width="3" stroke-linecap="round"/>
+  <path d="M24 37a13 13 0 0 1-11.3-19.5L24 24" fill="none" stroke="#667386" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="24" cy="24" r="4" fill="#fff"/>
+</svg>
