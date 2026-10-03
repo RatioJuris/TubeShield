@@ -1,0 +1,17 @@
+*{box-sizing:border-box}
+body{margin:0;width:330px;background:#10141c;color:#f8fafc;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+main{padding:16px}
+header{display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid #28303d}
+header img{border-radius:9px}
+header strong{display:block;font-size:17px}
+header small{display:block;color:#8d99aa;margin-top:1px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.stat{background:#1a202b;border:1px solid #2a3342;border-radius:10px;padding:12px;text-align:center}
+.stat.total{grid-column:1/-1}
+.stat span{display:block;font-size:25px;font-weight:750}
+.stat small{display:block;color:#9ca8b8;margin-top:2px}
+#lastBlocked{font-size:12px;color:#8d99aa;margin:12px 2px}
+.actions{display:flex;gap:8px}
+button{flex:1;border:0;border-radius:8px;padding:9px 8px;font-weight:650;cursor:pointer}
+#options{background:#f8fafc;color:#111827}
+#reset{background:#273142;color:#e5e7eb}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TubeShield</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <main>
+    <header>
+      <img
+        src="icons/icon48.png"
+        alt="TubeShield"
+        width="38"
+        height="38"
+      >
+
+      <div>
+        <strong>TubeShield</strong>
+        <small>by RatioJuris</small>
+      </div>
+    </header>
+
+    <section class="stats" aria-label="Blocking statistics">
+      <div class="stat">
+        <span id="adsBlocked">0</span>
+        <small>Ads blocked</small>
+      </div>
+
+      <div class="stat">
+        <span id="siteBlocked">0</span>
+        <small>Blocked sites configured</small>
+      </div>
+
+      <div class="stat total">
+        <span id="totalBlocked">0</span>
+        <small>Total ad blocks counted</small>
+      </div>
+    </section>
+
+    <p id="lastBlocked" aria-live="polite">
+      No blocks recorded yet.
+    </p>
+
+    <div class="actions">
+      <button id="options" type="button">
+        Options
+      </button>
+
+      <button id="reset" type="button">
+        Reset statistics
+      </button>
+    </div>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

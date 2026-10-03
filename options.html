@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TubeShield — Options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+
+<body>
+<main class="container">
+
+  <header>
+    <div class="brand">TubeShield</div>
+    <div class="byline">by RatioJuris</div>
+    <h1>Options</h1>
+    <p>
+      Configure ad blocking and the sites or domains that TubeShield should block.
+    </p>
+  </header>
+
+
+  <section class="card">
+    <label class="toggle">
+      <input id="youtubeAdBlocking" type="checkbox">
+
+      <span>
+        <strong>Enable ad blocking</strong>
+        <small>
+          Hides supported advertising elements and attempts to skip active video ads.
+        </small>
+      </span>
+    </label>
+  </section>
+
+
+  <section class="card">
+    <label class="toggle">
+      <input id="blockSitesEnabled" type="checkbox">
+
+      <span>
+        <strong>Enable blocked-sites list</strong>
+        <small>
+          When enabled, each entry below blocks the site's main page/request.
+        </small>
+      </span>
+    </label>
+  </section>
+
+
+  <section class="card">
+
+    <h2>Blocked sites / URLs</h2>
+
+    <p class="hint">
+      Enter one domain or URL pattern per line.
+      The programmed defaults are included below.
+      The blocked-sites feature is disabled by default so ad blocking
+      can operate normally.
+    </p>
+
+    <textarea
+      id="blockedSites"
+      spellcheck="false"
+      aria-label="Blocked sites and URL patterns"
+    ></textarea>
+
+
+    <div class="actions">
+      <button
+        id="save"
+        class="primary"
+        type="button"
+      >
+        Save settings
+      </button>
+
+      <button
+        id="restore"
+        class="secondary"
+        type="button"
+      >
+        Restore Default Settings
+      </button>
+    </div>
+
+    <div
+      id="status"
+      role="status"
+      aria-live="polite"
+    ></div>
+
+  </section>
+
+
+  <section class="card">
+
+    <h2>Statistics</h2>
+
+    <div class="stats">
+
+      <div>
+        <strong id="ads">0</strong>
+        <span>Ads blocked</span>
+      </div>
+
+      <div>
+        <strong id="sites">0</strong>
+        <span>Site rules configured</span>
+      </div>
+
+      <div>
+        <strong id="total">0</strong>
+        <span>Total ad blocks counted</span>
+      </div>
+
+    </div>
+
+    <button
+      id="resetStats"
+      class="secondary full"
+      type="button"
+    >
+      Reset Statistics
+    </button>
+
+  </section>
+
+
+  <footer>
+
+    <a
+      href="https://github.com/RatioJuris/TubeShield"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      GitHub
+    </a>
+
+    <span>•</span>
+
+    <a
+      href="https://ratiojuris.github.io/TubeShield/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Homepage
+    </a>
+
+    <span>•</span>
+
+    <a
+      href="https://ratiojuris.github.io/TubeShield/privacy.html"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Privacy
+    </a>
+
+    <span>•</span>
+
+    <a
+      href="https://ratiojuris.github.io/TubeShield/terms.html"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Terms
+    </a>
+
+    <span>•</span>
+
+    <a
+      href="https://ratiojuris.github.io/TubeShield/contact.html"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Contact
+    </a>
+
+  </footer>
+
+</main>
+
+<script src="options.js"></script>
+</body>
+</html>

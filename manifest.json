@@ -1,0 +1,65 @@
+{
+  "manifest_version": 3,
+  "name": "TubeShield",
+  "short_name": "TubeShield",
+  "version": "1.0.0",
+  "description": "TubeShield by RatioJuris — browser-side ad blocking and configurable video-site blocking.",
+  "author": "RatioJuris",
+  "homepage_url": "https://ratiojuris.github.io/TubeShield/",
+  "permissions": [
+    "storage",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://youtu.be/*",
+    "*://*.googlevideo.com/*",
+    "*://*.doubleclick.net/*",
+    "*://*.googlesyndication.com/*",
+    "*://*.googleadservices.com/*",
+    "*://*.vimeo.com/*",
+    "*://*.dailymotion.com/*",
+    "*://*.twitch.tv/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "video_site_ads",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "TubeShield",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.youtube.com/*",
+        "*://youtube.com/*",
+        "*://m.youtube.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "options_page": "options.html"
+}
