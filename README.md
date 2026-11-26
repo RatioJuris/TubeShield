@@ -52,6 +52,13 @@ TubeShield does not use `declarativeNetRequestFeedback` in the production build.
 4. Select **Load unpacked**.
 5. Select the extracted extension directory containing `manifest.json`.
 
+## Store listings
+
+- Chrome Web Store: https://chromewebstore.google.com/detail/tubeshield/mdalbhgcgmblklfgpjmpbchbgidfkclm
+- Microsoft Edge Add-ons: https://microsoftedge.microsoft.com/addons/detail/tubeshield/ioobkmbkklooimjmkanbeconldikdoeg
+
+Both official listings currently publish v1.0.0. The v1.0.1 source and release ZIP are in this repository.
+
 ## Project
 
 - Repository: https://github.com/RatioJuris/TubeShield

@@ -151,17 +151,18 @@ h1{font-size:clamp(44px,7vw,78px);line-height:.98;letter-spacing:-.055em;margin:
 
 .store-section{background:#0e141e}
 .store-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
-.store-card{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:22px}
+.store-card{display:block;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:22px;color:inherit;text-decoration:none;transition:border-color .15s,transform .15s}
+.store-card:hover{border-color:#19A99B;transform:translateY(-2px)}
 .store-badge{display:flex;align-items:center;gap:14px}
 .store-badge img{flex:0 0 auto;border-radius:10px}
 .store-badge strong{display:block;font-size:17px}
 .store-badge span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
 .store-actions{margin-top:18px}
-.store-placeholder-label{
+.store-link-label{
   display:inline-flex;align-items:center;justify-content:center;
   width:100%;min-height:42px;padding:9px 12px;
-  border:1px dashed #465368;border-radius:9px;
-  color:#8d9aac;font-size:11px;font-weight:800;letter-spacing:.08em;
+  border:1px solid #19A99B;border-radius:9px;
+  color:#8ff2e6;font-size:12px;font-weight:800;letter-spacing:.06em;
 }
 .store-note{margin:18px 0 0;color:#718096;font-size:12px}
 

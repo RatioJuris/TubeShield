@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Microsoft Edge Add-ons">
+  <rect x="1" y="1" width="46" height="46" rx="12" fill="#0B1220" stroke="#0B4F6C" stroke-width="2"/>
+  <path d="M12 12H36V26L24 39L12 26Z" fill="#123A63"/>
+  <path d="M15 15H33V25L24 34L15 25Z" fill="#19A99B"/>
+  <path d="M14 28C19 21 26 18 34 20" fill="none" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M17 33C22 29 27 27 33 27" fill="none" stroke="#0EA5E9" stroke-width="3" stroke-linecap="round"/>
+</svg>
