@@ -1,10 +1,10 @@
 # TubeShield
 
-[![TubeShield](icons/tubeshield-logo.svg)](https://ratiojuris.github.io/TubeShield/)
+[![TubeShield](icons/tubeshield-logo.svg)](https://chromewebstore.google.com/detail/tubeshield/mdalbhgcgmblklfgpjmpbchbgidfkclm)
 
 **TubeShield by RatioJuris**
 
-Version 1.0.1 — Manifest V3 browser extension.
+Version 1.0.1 — Manifest V3 browser extension. Licensed under [GPL-3.0-or-later](LICENSE).
 
 ## Features
 
@@ -68,6 +68,7 @@ Both official listings currently publish v1.0.0. The v1.0.1 source and release Z
 
 ## Legal
 
+- [License](LICENSE) — GNU General Public License v3.0 or later (`GPL-3.0-or-later`)
 - [Privacy Policy](https://ratiojuris.github.io/TubeShield/privacy.html)
 - [Terms of Service](https://ratiojuris.github.io/TubeShield/terms.html)
 - [Contact](https://ratiojuris.github.io/TubeShield/contact.html)

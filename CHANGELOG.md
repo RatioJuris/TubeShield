@@ -20,7 +20,8 @@ All notable changes to TubeShield are documented here.
 - Capped dynamic site-blocking rules at 1000 and validated/normalised user-entered domains before they become `||domain/` filters.
 - Hardened settings storage: malformed statistics and non-array site lists are normalised on load.
 - Updated README permission notes and documentation version strings to 1.0.1.
-- Replaced the placeholder Chrome Web Store and Microsoft Edge Add-ons badge assets with the official Chrome and Edge SVGs and linked the verified official listings: `https://chromewebstore.google.com/detail/tubeshield/mdalbhgcgmblklfgpjmpbchbgidfkclm` and `https://microsoftedge.microsoft.com/addons/detail/tubeshield/ioobkmbkklooimjmkanbeconldikdoeg`. The TubeShield shield SVG is used for the favicon, README header icon and extension mark. All README/store/project links are now clickable Markdown links. Both listings currently publish v1.0.0.
+- Replaced the placeholder Chrome Web Store and Microsoft Edge Add-ons badge assets with the official Chrome and Edge SVGs and linked the verified official listings: `https://chromewebstore.google.com/detail/tubeshield/mdalbhgcgmblklfgpjmpbchbgidfkclm` and `https://microsoftedge.microsoft.com/addons/detail/tubeshield/ioobkmbkklooimjmkanbeconldikdoeg`. The TubeShield shield SVG is used for the favicon, README header icon and extension mark. The README header image links to the Chrome Web Store listing, and all README/store/project links are clickable Markdown links. Both listings currently publish v1.0.0.
+- Added a full `LICENSE` file under `GPL-3.0-or-later` with the GNU GPL v3.0 text and a project notice.
 
 ## 1.0.0
 
