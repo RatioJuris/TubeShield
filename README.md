@@ -1,5 +1,7 @@
 # TubeShield
 
+[![TubeShield](icons/tubeshield-logo.svg)](https://ratiojuris.github.io/TubeShield/)
+
 **TubeShield by RatioJuris**
 
 Version 1.0.1 — Manifest V3 browser extension.
@@ -54,21 +56,21 @@ TubeShield does not use `declarativeNetRequestFeedback` in the production build.
 
 ## Store listings
 
-- Chrome Web Store: https://chromewebstore.google.com/detail/tubeshield/mdalbhgcgmblklfgpjmpbchbgidfkclm
-- Microsoft Edge Add-ons: https://microsoftedge.microsoft.com/addons/detail/tubeshield/ioobkmbkklooimjmkanbeconldikdoeg
+- [Chrome Web Store](https://chromewebstore.google.com/detail/tubeshield/mdalbhgcgmblklfgpjmpbchbgidfkclm)
+- [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/tubeshield/ioobkmbkklooimjmkanbeconldikdoeg)
 
 Both official listings currently publish v1.0.0. The v1.0.1 source and release ZIP are in this repository.
 
 ## Project
 
-- Repository: https://github.com/RatioJuris/TubeShield
-- Homepage: https://ratiojuris.github.io/TubeShield/
+- [Repository](https://github.com/RatioJuris/TubeShield)
+- [Homepage](https://ratiojuris.github.io/TubeShield/)
 
 ## Legal
 
-- Privacy Policy: https://ratiojuris.github.io/TubeShield/privacy.html
-- Terms of Service: https://ratiojuris.github.io/TubeShield/terms.html
-- Contact: https://ratiojuris.github.io/TubeShield/contact.html
+- [Privacy Policy](https://ratiojuris.github.io/TubeShield/privacy.html)
+- [Terms of Service](https://ratiojuris.github.io/TubeShield/terms.html)
+- [Contact](https://ratiojuris.github.io/TubeShield/contact.html)
 
 ## Branding
 
