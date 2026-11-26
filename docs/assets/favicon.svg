@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff4a55"/><stop offset="1" stop-color="#9d101a"/></linearGradient></defs>
-<path d="M32 4 55 12v18c0 15-9 24-23 30C18 54 9 45 9 30V12L32 4Z" fill="url(#g)"/>
-<path d="m25 20 18 12-18 12z" fill="#fff"/>
-<circle cx="46" cy="17" r="9" fill="#111824" stroke="#fff" stroke-width="2"/>
-<path d="M42 13l8 8M50 13l-8 8" stroke="#ef3340" stroke-width="2.5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="TubeShield">
+  <rect width="512" height="512" rx="112" fill="#0B1220"/>
+  <path d="M138 96 H374 V262 L256 432 L138 262 Z" fill="#1B2A6B"/>
+  <path d="M156 116 H356 V258 L256 404 L156 258 Z" fill="#19A99B"/>
+  <path d="M198 212 L256 272 L314 212" fill="none" stroke="#F2C879" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

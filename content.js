@@ -14,88 +14,192 @@
     "ytd-banner-promo-renderer"
   ];
 
-  let previousAdState = false;
+  const skipSelectors = [
+    ".ytp-skip-ad-button",
+    ".ytp-ad-skip-button-modern",
+    ".ytp-ad-skip-button"
+  ];
+
+  const HIDE_PROPERTIES = ["opacity", "clip-path", "pointer-events"];
+  const COUNT_COOLDOWN_MS = 4000;
+  const POD_GAP_MS = 8000;
+
   let enabled = true;
-  const countedElements = new WeakSet();
+  let adShowing = false;
+  let lastCountAt = 0;
+  let lastAdEndAt = 0;
+  let scheduled = false;
+  let adVideo = null;
+  let adVideoWasMuted = false;
+
+  const handledElements = new Set();
+  const handledSkipButtons = new Set();
 
   chrome.storage.local.get({youtubeAdBlocking: true}).then(data => {
     enabled = data.youtubeAdBlocking !== false;
-  });
+  }).catch(() => {});
 
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area === "local" && changes.youtubeAdBlocking) {
       enabled = changes.youtubeAdBlocking.newValue !== false;
+
+      if (!enabled) {
+        restoreAdVideo();
+
+        for (const element of handledElements) {
+          if (element.isConnected) undoSoftHide(element);
+        }
+
+        handledElements.clear();
+        handledSkipButtons.clear();
+        adShowing = false;
+      }
     }
   });
 
-  function reportAd(count = 1) {
-    chrome.runtime.sendMessage({type: "adBlocked", count}).catch(() => {});
+  document.addEventListener("volumechange", (event) => {
+    if (!enabled || !adShowing || event.target !== adVideo) return;
+
+    if (event.target.muted) return;
+
+    event.target.muted = true;
+  }, true);
+
+  function softHide(element) {
+    element.style.setProperty("opacity", "0", "important");
+    element.style.setProperty("clip-path", "inset(100%)", "important");
+    element.style.setProperty("pointer-events", "none", "important");
+  }
+
+  function undoSoftHide(element) {
+    for (const property of HIDE_PROPERTIES) {
+      element.style.removeProperty(property);
+    }
+  }
+
+  function restoreAdVideo() {
+    if (!adVideo) return;
+
+    undoSoftHide(adVideo);
+    adVideo.muted = adVideoWasMuted;
+    adVideo = null;
+  }
+
+  function reportAd(count) {
+    const now = Date.now();
+
+    if (now - lastCountAt < COUNT_COOLDOWN_MS) return;
+
+    lastCountAt = now;
+
+    chrome.runtime.sendMessage({
+      type: "adBlocked",
+      count: Math.max(1, Number(count) || 1)
+    }).catch(() => {});
+  }
+
+  function isVisible(element) {
+    const style = getComputedStyle(element);
+
+    return element.getClientRects().length > 0 &&
+      style.display !== "none" &&
+      style.visibility !== "hidden";
   }
 
   function hideVisualAds() {
     let newlyHidden = 0;
 
+    for (const element of handledElements) {
+      if (!element.isConnected) handledElements.delete(element);
+    }
+
     for (const selector of selectors) {
       document.querySelectorAll(selector).forEach(element => {
-        const visible =
-          element.offsetWidth > 0 ||
-          element.offsetHeight > 0 ||
-          getComputedStyle(element).display !== "none";
-
-        if (visible && !countedElements.has(element)) {
-          countedElements.add(element);
+        if (!handledElements.has(element) && isVisible(element)) {
+          handledElements.add(element);
           newlyHidden++;
+        } else {
+          handledElements.add(element);
         }
 
-        element.style.setProperty("display", "none", "important");
-        element.style.setProperty("visibility", "hidden", "important");
+        softHide(element);
       });
     }
 
     if (newlyHidden) reportAd(newlyHidden);
   }
 
-  function skipVideoAd() {
+  function handlePlayerAd() {
     const video = document.querySelector("video");
-    const skipButton = document.querySelector(
-      ".ytp-skip-ad-button, .ytp-ad-skip-button-modern, .ytp-ad-skip-button"
-    );
-    const adShowing = !!document.querySelector(".ad-showing, .ad-interrupting");
+    const showing = !!document.querySelector(".ad-showing, .ad-interrupting");
+    const now = Date.now();
 
-    if (skipButton) {
-      skipButton.click();
+    if (showing) {
+      if (video) {
+        if (adVideo !== video) {
+          restoreAdVideo();
+          adVideo = video;
+          adVideoWasMuted = video.muted;
+        }
+
+        if (!video.muted) video.muted = true;
+        softHide(video);
+      } else {
+        restoreAdVideo();
+      }
+
+      for (const selector of skipSelectors) {
+        document.querySelectorAll(selector).forEach(button => {
+          if (handledSkipButtons.has(button) || !isVisible(button)) return;
+
+          handledSkipButtons.add(button);
+          button.click();
+        });
+      }
+
+      if (!adShowing && now - lastAdEndAt >= POD_GAP_MS) {
+        reportAd(1);
+      }
+    } else if (adShowing) {
+      lastAdEndAt = now;
+      handledSkipButtons.clear();
+      restoreAdVideo();
     }
 
-    if (adShowing && !previousAdState) {
-      reportAd(1);
-    }
-
-    previousAdState = adShowing;
-
-    if (adShowing && video && Number.isFinite(video.duration) && video.duration > 0) {
-      try {
-        video.currentTime = Math.max(0, video.duration - 0.05);
-        video.playbackRate = 16;
-      } catch (_) {}
-    }
+    adShowing = showing;
   }
 
   function run() {
     if (!enabled) return;
+
     hideVisualAds();
-    skipVideoAd();
+    handlePlayerAd();
+  }
+
+  function scheduleRun() {
+    if (scheduled) return;
+
+    scheduled = true;
+
+    requestAnimationFrame(() => {
+      scheduled = false;
+      run();
+    });
   }
 
   function init() {
     run();
 
-    const observer = new MutationObserver(run);
+    const observer = new MutationObserver(scheduleRun);
+
     observer.observe(document.documentElement, {
       childList: true,
-      subtree: true
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["class", "id"]
     });
 
-    setInterval(run, 1000);
+    setInterval(run, 250);
   }
 
   if (document.documentElement) {
@@ -107,6 +211,7 @@
         init();
       }
     });
+
     wait.observe(document, {childList: true, subtree: true});
   }
 })();

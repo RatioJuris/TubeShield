@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="TubeShield">
+  <rect width="512" height="512" rx="112" fill="#0B1220"/>
+  <path d="M138 96 H374 V262 L256 432 L138 262 Z" fill="#1B2A6B"/>
+  <path d="M156 116 H356 V258 L256 404 L156 258 Z" fill="#19A99B"/>
+  <path d="M198 212 L256 272 L314 212" fill="none" stroke="#F2C879" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

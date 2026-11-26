@@ -1,0 +1,7 @@
+# Private signing material
+*.pem
+*.key
+
+# Local development files
+.DS_Store
+Thumbs.db

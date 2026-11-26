@@ -2,34 +2,18 @@
   "manifest_version": 3,
   "name": "TubeShield",
   "short_name": "TubeShield",
-  "version": "1.0.0",
-  "description": "TubeShield by RatioJuris — browser-side ad blocking and configurable video-site blocking.",
+  "version": "1.0.1",
+  "description": "TubeShield by RatioJuris — browser-side ad hiding and configurable video-site blocking.",
   "author": "RatioJuris",
   "homepage_url": "https://ratiojuris.github.io/TubeShield/",
+  "minimum_chrome_version": "101",
   "permissions": [
     "storage",
     "declarativeNetRequest"
   ],
   "host_permissions": [
-    "*://*.youtube.com/*",
-    "*://youtu.be/*",
-    "*://*.googlevideo.com/*",
-    "*://*.doubleclick.net/*",
-    "*://*.googlesyndication.com/*",
-    "*://*.googleadservices.com/*",
-    "*://*.vimeo.com/*",
-    "*://*.dailymotion.com/*",
-    "*://*.twitch.tv/*"
+    "*://*.youtube.com/*"
   ],
-  "declarative_net_request": {
-    "rule_resources": [
-      {
-        "id": "video_site_ads",
-        "enabled": true,
-        "path": "rules.json"
-      }
-    ]
-  },
   "background": {
     "service_worker": "background.js"
   },

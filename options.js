@@ -1,10 +1,3 @@
-const DEFAULTS = [
-  "youtube.com",
-  "vimeo.com",
-  "dailymotion.com",
-  "twitch.tv"
-];
-
 const blockedSites = document.getElementById("blockedSites");
 const youtubeAdBlocking = document.getElementById("youtubeAdBlocking");
 const blockSitesEnabled = document.getElementById("blockSitesEnabled");
@@ -20,15 +13,13 @@ function getSiteCount() {
 }
 
 async function load() {
-  const data = await chrome.storage.local.get({
-    blockedSites: DEFAULTS,
-    youtubeAdBlocking: true,
-    blockSitesEnabled: false
-  });
+  const data = await chrome.runtime.sendMessage({type: "getSettings"});
 
-  blockedSites.value = (data.blockedSites || DEFAULTS).join("\n");
-  youtubeAdBlocking.checked = data.youtubeAdBlocking !== false;
-  blockSitesEnabled.checked = data.blockSitesEnabled === true;
+  if (!data) return;
+
+  blockedSites.value = data.blockedSites.join("\n");
+  youtubeAdBlocking.checked = data.youtubeAdBlocking;
+  blockSitesEnabled.checked = data.blockSitesEnabled;
 
   await loadStats();
 }
@@ -58,12 +49,15 @@ async function save() {
 }
 
 async function restoreDefaults() {
-  blockedSites.value = DEFAULTS.join("\n");
+  const data = await chrome.runtime.sendMessage({type: "getSettings"});
+  const defaults = data?.defaults?.blockedSites || [];
+
+  blockedSites.value = defaults.join("\n");
   youtubeAdBlocking.checked = true;
   blockSitesEnabled.checked = false;
 
   await chrome.storage.local.set({
-    blockedSites: [...DEFAULTS],
+    blockedSites: [...defaults],
     youtubeAdBlocking: true,
     blockSitesEnabled: false
   });
@@ -77,11 +71,9 @@ async function restoreDefaults() {
 }
 
 async function loadStats() {
-  const stats = await chrome.runtime.sendMessage({
-    type: "getStats"
-  });
+  const data = await chrome.runtime.sendMessage({type: "getSettings"});
 
-  const ads = Number(stats?.adsBlocked || 0);
+  const ads = Number(data?.stats?.adsBlocked || 0);
   const siteCount = getSiteCount();
 
   document.getElementById("ads").textContent =

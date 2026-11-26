@@ -1,17 +1,11 @@
 async function loadStats() {
-  const stats = await chrome.runtime.sendMessage({
-    type: "getStats"
-  });
+  const data = await chrome.runtime.sendMessage({type: "getSettings"});
 
-  const ads = Number(stats?.adsBlocked || 0);
+  const stats = data?.stats || {};
+  const ads = Number(stats.adsBlocked || 0);
 
-  const settings = await chrome.storage.local.get({
-    blockedSites: []
-  });
-
-  const siteCount = Array.isArray(settings.blockedSites)
-    ? settings.blockedSites.filter(v => String(v).trim()).length
-    : 0;
+  const sites = Array.isArray(data?.blockedSites) ? data.blockedSites : [];
+  const siteCount = sites.filter(value => String(value).trim()).length;
 
   const adsElement = document.getElementById("adsBlocked");
   const siteElement = document.getElementById("siteBlocked");
@@ -30,7 +24,7 @@ async function loadStats() {
     totalElement.textContent = ads.toLocaleString();
   }
 
-  const last = Number(stats?.lastBlockedAt || 0);
+  const last = Number(stats.lastBlockedAt || 0);
 
   if (lastElement) {
     lastElement.textContent = last
